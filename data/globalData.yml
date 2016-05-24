@@ -1,0 +1,89 @@
+defaultRegistration: 128HistoBins_Ln6Lp4Smo1
+trainingBrains: {MV_Ntsr1_165, CR_Syt6CreRfp_35}
+manSegBaseDirs: {/media/brainDoh/CN/aMapPaperData/userSegmentation/userSegmentations}
+manSegNiiDirBase: /media/brainDoh/CN/aMapPaperData/4dStacksForSTAPLE-SBA-Cleaned
+stapleDirBase: /media/brainDoh/CN/aMapPaperData/userStapleResults
+atlasPath: /media/brainDoh/CN/aMapPaperData/atlas/Kim_ORL_ARA_v2.3_Segmentation_Smoothed.nii
+paramSearchCppDir: /media/brainDoh/CN/niftyParameterSearch/
+resampleDir: /media/brainDoh/CN/niftyParameterSearch/resampledAtlases/
+tmpDir: /media/HDDTemp/cn_segment/tmp/
+stackSize: 40
+scale: 0.25
+brains:
+    -
+        name: MV_Ntsr1_165
+        brainFileName: MV_Ntsr1_165_StitchedImagesPaths_Ch02_12.5-ZsmoothedAffRegNoTrans.nii
+        height: 732
+    -
+        name: MV_Ntsr1_169
+        brainFileName: Ntsr1_169_StitchedImagesPaths_Ch02_12.5-ZsmoothedAffReg2NoTrans.nii
+        height: 730
+    -
+        name: CR_Syt6CreRfp_35
+        brainFileName: CR_Syt6_cre_rfp_35_StitchedImagesPaths_Ch03_0-2399-noRep-12.5-ZsmoothedAffNoTrans.nii
+        height: 736
+    -
+        name: ER_Glt25d2Cre_9
+        brainFileName: ER_Glt25d2Cre_9_5umstack_Ch01_12.5-zSmoothedAffRegNoTrans.nii
+        height: 604
+    -
+        name: AB_Gad67_223
+        brainFileName: GAD67GFP_223_StitchedImagesPaths_Ch02_12.5-ZsmoothedAffRegNoTrans.nii
+        height: 729
+    -
+        name: MV131017_7
+        brainFileName: MV_131017_MV_7_StitchedImagesPaths_Ch02_12.5-ZsmoothedAffRegNoTrans.nii
+        height: 728
+
+regionsUsed:
+    -
+        name: MV
+        allenID: 202
+        allenName: MV
+        sectionName: MV
+    -
+        name: sub
+        allenID: 509
+        allenName: SUBd
+        sectionName: sub
+    -
+        name: sg
+        allenID: 632
+        allenName: DG-sg
+        sectionName: sg
+    -
+        name: rsp
+        allenID: 254
+        allenName: RSP
+        sectionName: rspV1V2M
+    -
+        name: V1
+        allenID: 385
+        allenName: VISp
+        sectionName: rspV1V2M
+    -
+        name: V2M
+        allenID: 394
+        allenName: VISam
+        sectionName: rspV1V2M
+    -
+        name: vpm
+        allenID: 733
+        allenName: VPM
+        sectionName: vpm
+    -
+        name: adt
+        allenID: 88
+        allenName: AHN
+        sectionName: adt
+    -
+        name: s1bf
+        allenID: 322
+        allenName: SSp
+        sectionName: s1bf
+    -
+        name: cingul
+        allenID: 31
+        allenName: ACA
+        sectionName: cingul
+

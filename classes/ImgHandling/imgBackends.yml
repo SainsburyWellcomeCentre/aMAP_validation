@@ -1,0 +1,11 @@
+backendDefs:
+    -
+        ext: .nii
+        loader: NiftyBackend
+    -
+        ext: .nii.gz
+        loader: NiftyBackend
+    -
+        ext: .mhd
+        loader: MhdBackend
+

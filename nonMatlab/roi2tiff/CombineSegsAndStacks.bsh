@@ -1,0 +1,79 @@
+import ij.IJ;
+import ij.ImagePlus;
+import ij.ImageStack;
+import ij.plugin.PlugIn;
+import ij.plugin.RGBStackMerge;
+import ij.process.ImageConverter;
+import ij.process.ImageProcessor;
+import ij.plugin.CanvasResizer;
+
+File imDir = new File("/media/brainDoh/CN/segTmpOut");
+//File segBaseDir = new File("/media/buffer/cn_segment/stacksForSeg");
+File segBaseDir = new File("/media/brainDoh/CN/cn_segment/stacksForSeg");
+String stackPrefix = "FullStack_";
+min = 100;
+max = 5000;
+scale = 0.25;
+Map nameConvMap = new HashMap();
+nameConvMap.put("RSP", "rspV1V2M");
+nameConvMap.put("V1", "rspV1V2M");
+nameConvMap.put("V2M", "rspV1V2M");
+nameConvMap.put("VPM", "rspV1V2M");
+nameConvMap.put("MV", "rspV1V2M");
+nameConvMap.put("SUB", "rspV1V2M");
+nameConvMap.put("CING", "rspV1V2M");
+nameConvMap.put("SG", "rspV1V2M");
+nameConvMap.put("S1BF", "rspV1V2M");
+nameConvMap.put("AHN", "rspV1V2M");
+
+
+for (File segImg : imDir.listFiles()){
+	String segImgName = segImg.getName();
+	if (!segImgName.endsWith(".tif")  || segImgName.startsWith(stackPrefix)){
+		continue;
+	}
+	ImagePlus segImp =IJ.openImage(segImg.getAbsolutePath());
+	
+	String folderName = segImgName.substring(0, segImgName.lastIndexOf("_"));
+	String imgTag = segImgName.substring(segImgName.lastIndexOf("_")+1, segImgName.lastIndexOf(".tif"));
+	File tvImgStack = new File(new File(segBaseDir, folderName), nameConvMap.get(imgTag)+".tif");
+	ImagePlus tvImp = IJ.openImage(tvImgStack.getAbsolutePath());
+	//ImagePlus tvImp = IJ.getImage();
+	newWidth = (int)(tvImp.getWidth()*scale);
+	newHeight = (int)(tvImp.getHeight()*scale);
+	new ImageConverter(tvImp).convertToGray8();
+	ImageStack tvStack = tvImp.getImageStack();
+	ImageStack newStack = new ImageStack(newWidth, newHeight);
+	for (i= 1; i<tvStack.getSize()+1; i++)
+		newStack.addSlice(tvStack.getProcessor(i).resize(newWidth, newHeight));
+	tvImp = new ImagePlus(tvImp.getTitle(), newStack);
+	
+	ImageStack segStack = new ImageStack(segImp.getWidth(), segImp.getHeight());
+	for (i= 1; i<tvImp.getNSlices()+1; i++){
+		segStack.addSlice(segImp.getProcessor());
+	}
+	ImagePlus segStackImp = new ImagePlus(segImp.getTitle(), segStack);
+	if (tvImp.getWidth()!=segStackImp.getWidth() || tvImp.getHeight()!=segStackImp.getHeight()){
+		IJ.log("Warning, different sizes on "+segImgName);
+		IJ.log("Width: TV"+tvImp.getWidth()+" SEG "+segStackImp.getWidth()+" Height: TV "+tvImp.getHeight()+ " SEG "+segStackImp.getHeight());
+		newWidth = (int) Math.max(tvImp.getWidth(), segStackImp.getWidth());
+		newHeight = (int) Math.max(tvImp.getHeight(), segStackImp.getHeight());
+		CanvasResizer cr = new CanvasResizer();
+		newStack = cr.expandStack(newStack, newWidth, newHeight, 0, 0);
+		segStack = cr.expandStack(segStack, newWidth, newHeight, 0, 0);
+		tvImp.setStack(newStack);
+		segStackImp.setStack(segStack);
+	}
+	
+	ImagePlus[] mergeThis = {tvImp, segStackImp};
+	IJ.log("Width: TV"+tvImp.getWidth()+" SEG "+segStackImp.getWidth()+" Height: TV "+tvImp.getHeight()+ " SEG "+segStackImp.getHeight());
+	ImagePlus fullResult = new RGBStackMerge().mergeHyperstacks(mergeThis, false);
+	IJ.save(fullResult, new File(imDir, stackPrefix+segImg.getName()).toString());
+	segStackImp.changes = false;
+	segStackImp.close();
+	tvImp.changes = false;
+	tvImp.close();
+	segImp.changes = false;
+	segImp.close();
+}
+

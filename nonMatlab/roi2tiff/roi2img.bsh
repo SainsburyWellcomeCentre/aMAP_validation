@@ -1,0 +1,43 @@
+import ij.IJ;
+import ij.ImagePlus;
+import ij.ImageStack;
+import ij.gui.Roi;
+import java.awt.Rectangle;
+import ij.io.RoiDecoder;
+import java.util.List;
+import ij.process.ByteProcessor;
+import ij.process.ImageProcessor;
+
+List roiDirs = new ArrayList();
+//roiDirs.add(new File("/Users/Niedi/Documents/PhD/segmentation/group1"));
+//roiDirs.add(new File("/Users/Niedi/Documents/PhD/segmentation/group2"));
+roiDirs.add(new File("/Users/Niedi/Documents/PhD/segmentation/all/day1"));
+roiDirs.add(new File("/Users/Niedi/Documents/PhD/segmentation/all/day2"));
+roiDirs.add(new File("/Users/Niedi/Documents/PhD/segmentation/all/day3"));
+roiDirs.add(new File("/Users/Niedi/Documents/PhD/segmentation/all/day4"));
+roiDirs.add(new File("/Users/Niedi/Documents/PhD/segmentation/all/day5"));
+
+
+for (File groupDir : roiDirs){
+	for (File subjectDir : groupDir.listFiles()){
+		if (!subjectDir.isDirectory())
+			continue;
+		for(File content : subjectDir.listFiles()){
+			if (content.getName().endsWith(".roi")){
+				Roi roi = RoiDecoder.open(content.getAbsolutePath());
+				Rectangle boundingRect = roi.getBounds();
+				int width = boundingRect.x+boundingRect.width+1;
+				int height = boundingRect.y+boundingRect.height+1;
+				ImageProcessor ip = new ByteProcessor(width, height);
+				ip.setRoi(roi);
+				ip.setValue(255);
+				ip.fill(ip.getMask());
+				String outName = content.getName();
+				outName = outName.substring(0, outName.length()-3);
+				ImagePlus imgOut = new ImagePlus(outName, ip);
+				File imageOut = new File(content.getParent(), outName+".tif");
+				IJ.saveAsTiff(imgOut, imageOut.getAbsolutePath());
+			}
+		}
+	}
+}

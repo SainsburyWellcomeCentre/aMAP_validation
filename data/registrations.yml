@@ -1,0 +1,16 @@
+runs:
+    -
+        atlasDir: /media/interim/CN/cn_segment/alignment3/resultsMarcsParameters
+        atlasNames: {CR_Syt6_cre_rfp_35_StitchedImagesPaths_Ch03_0-2399-noRep-12.5-ZsmoothedAffNoTrans_OstenRef_ARA_v2_rotatedFlipZXYZ12.5_ln6lp4sx10be0.95nmifbn128rbn128smooR1smooF1omp20_MAP.nii, ER_Glt25d2Cre_9_5umstack_Ch01_12.5-zSmoothedAffRegNoTrans_OstenRef_ARA_v2_rotatedFlipZXYZ12.5_ln6lp4sx10be0.95nmifbn128rbn128smooR1smooF1omp20_MAP.nii, GAD67GFP_223_StitchedImagesPaths_Ch02_12.5-ZsmoothedAffRegNoTrans_OstenRef_ARA_v2_rotatedFlipZXYZ12.5_ln6lp4sx10be0.95nmifbn128rbn128smooR1smooF1omp20_MAP.nii, MV_131017_MV_7_StitchedImagesPaths_Ch02_12.5-ZsmoothedAffRegNoTrans_OstenRef_ARA_v2_rotatedFlipZXYZ12.5_ln6lp4sx10be0.95nmifbn128rbn128smooR1smooF1omp20_MAP.nii, MV_Ntsr1_165_StitchedImagesPaths_Ch02_12.5-ZsmoothedAffRegNoTrans_OstenRef_ARA_v2_rotatedFlipZXYZ12.5_ln6lp4sx10be0.95nmifbn128rbn128smooR1smooF1omp20_MAP.nii, Ntsr1_169_StitchedImagesPaths_Ch02_12.5-ZsmoothedAffReg2NoTrans_OstenRef_ARA_v2_rotatedFlipZXYZ12.5_ln6lp4sx10be0.95nmifbn128rbn128smooR1smooF1omp20_MAP.nii}
+        brainNames: {CR_Syt6CreRfp_35, ER_Glt25d2Cre_9, AB_Gad67_223, MV131017_7, MV_Ntsr1_165, MV_Ntsr1_169}
+        idString: 128HistoBins_Ln6Lp4Smo1
+        date: 22-Apr-2016
+        computerID: BMF
+    -
+        atlasDir: /media/brainDoh/CN/aMapPaperData/regElastix
+        atlasNames: {CR_Syt6_cre_rfp_35_StitchedImagesPaths_Ch03_0-2399-noRep-12.5-ZsmoothedAffNoTrans_Kim_OstenRef_ARA_v2_Average_Brain/atlas/result.mhd, ER_Glt25d2Cre_9_5umstack_Ch01_12.5-zSmoothedAffRegNoTrans_Kim_OstenRef_ARA_v2_Average_Brain/atlas/result.mhd, GAD67GFP_223_StitchedImagesPaths_Ch02_12.5-ZsmoothedAffRegNoTrans_Kim_OstenRef_ARA_v2_Average_Brain/atlas/result.mhd, MV_131017_MV_7_StitchedImagesPaths_Ch02_12.5-ZsmoothedAffRegNoTrans_Kim_OstenRef_ARA_v2_Average_Brain/atlas/result.mhd, MV_Ntsr1_165_StitchedImagesPaths_Ch02_12.5-ZsmoothedAffRegNoTrans_Kim_OstenRef_ARA_v2_Average_Brain/atlas/result.mhd, Ntsr1_169_StitchedImagesPaths_Ch02_12.5-ZsmoothedAffReg2NoTrans_Kim_OstenRef_ARA_v2_Average_Brain/atlas/result.mhd}
+        brainNames: {CR_Syt6CreRfp_35, ER_Glt25d2Cre_9, AB_Gad67_223, MV131017_7, MV_Ntsr1_165, MV_Ntsr1_169}
+        idString: ElastixTestNiftyRegParams
+        date: 22-Apr-2016
+        computerID: BMF
+
