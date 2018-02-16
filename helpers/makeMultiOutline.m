@@ -3,7 +3,12 @@ function outline = makeMultiOutline( inputData )
 %Brightness in a 3D dataset.
 %   Creates 2D outlines working on a plane-by-plane basis across the second
 %   dimension (coronal planes if data follows .nii convention)
-
+changeType = false;
+if ~isa(inputData, 'double')
+    changeType = true;
+    origType = class(inputData);
+    inputData = double(inputData);
+end
 outline = zeros(size(inputData));
 
 % the following (commented out) code is more accurate since it creates 
@@ -26,4 +31,8 @@ for z = 1:size(outline,2)
         currSliceOut = currSliceOut+bwperim(currSliceIn==allVals(i), 8)*allVals(i);
     end
     outline(:,z,:) = currSliceOut;
+end
+
+if changeType
+    outline = cast(outline, origType);
 end
