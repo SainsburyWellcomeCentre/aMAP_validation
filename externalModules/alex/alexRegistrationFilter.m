@@ -10,7 +10,8 @@ if nargin<3
     despecle = true;
 end
 if nargin<2
-    method = 'zfilter+pseudoflatfield';
+    %method = 'zfilter+pseudoflatfield';
+    method = 'pseudoflatfield';
 end
 switch method
     case 'pseudoflatfield'
